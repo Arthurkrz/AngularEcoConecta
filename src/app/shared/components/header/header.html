@@ -1,0 +1,30 @@
+<header class="site-header" id="site-header">
+    <div class="container nav-wrap">
+        <a routerLink="/" class="brand" id="brand-header" aria-label="EcoConecta, início"
+             (click)="fecharMenu()">
+            <span class="brand-icon">✳</span>
+            <span>Eco<em>Conecta</em></span>
+        </a>
+
+        <button class="nav-toggle" type="button" aria-controls="primary-navigation"
+            [attr.aria-label]="menuAberto() ? 'Fechar menu' : 'Abrir menu'"
+            [attr.aria-expanded]="menuAberto()" (click)="alternarMenu()">
+            {{ menuAberto() ? '✕' : '☰' }}
+        </button>
+
+        <nav class="nav-links" id="primary-navigation" aria-label="Navegação principal"
+                [class.open]="menuAberto()">
+            @for (pagina of paginas; track pagina.rota) {
+                <a [routerLink]="pagina.rota" routerLinkActive="active"
+                   [routerLinkActiveOptions]="{ exact: pagina.exata }"
+                   [class.nav-cta]="pagina.rota === '/cadastro'"
+                   ariaCurrentWhenActive="page" (click)="fecharMenu()">
+                  {{ pagina.nome }}
+                </a>
+            }
+            <a href="https://www.un.org/sustainabledevelopment/" target="_blank"
+                rel="noopener noreferrer"
+                title="Objetivos de Desenvolvimento Sustentável - Site externo">ONU ↗</a>
+        </nav>
+    </div>
+</header>

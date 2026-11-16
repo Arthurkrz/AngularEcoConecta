@@ -1,0 +1,20 @@
+<article class="card-eco" [attr.data-category]="item().category">
+  <div class="card-media">
+    <img class="card-img" [src]="item().img" [alt]="'Ilustração sobre ' + item().title" loading="lazy">
+    <span class="tag tag-overlay">{{ item().category }}</span>
+  </div>
+  <div class="card-body-eco">
+    <h3>{{ item().title }}</h3>
+    <p>{{ item().text }}</p>
+    <div class="card-actions">
+      <button type="button" class="action-link save-action" [attr.aria-pressed]="saved()" (click)="toggleSave()">
+        {{ saved() ? '♥ Salvo' : '♡ Salvar' }}
+      </button>
+      @if (type() === 'tip') {
+        <a class="card-link" routerLink="/painel">Ver favoritos →</a>
+      } @else {
+        <a class="card-link" routerLink="/cadastro">Participar →</a>
+      }
+    </div>
+  </div>
+</article>

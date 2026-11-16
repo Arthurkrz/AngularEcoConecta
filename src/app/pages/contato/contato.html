@@ -1,0 +1,63 @@
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow">EXPLORE O ECOCONECTA</span>
+    <h1>Fale com a gente</h1>
+  </div>
+</section>
+<section class="section">
+  <div class="container">
+    <div class="split">
+      <div>
+        <span class="eyebrow">MENSAGENS</span>
+        <h2>Sua opinião é importante.</h2>
+        <p>Use o formulário para sugerir temas, enviar dúvidas ou ideias.</p>
+        <div class="callout">
+          <h3>📬 Contato demonstrativo</h3>
+          <p class="page-contact-note">Veja as mensagens registradas em <a routerLink="/painel">Meu painel</a>.</p>
+        </div>
+      </div>
+      <form class="form-shell" [formGroup]="form" (ngSubmit)="enviar()" autocomplete="on" novalidate>
+        <div class="field">
+          <label for="contact-name">Nome completo</label>
+          <input id="contact-name" type="text" formControlName="name" placeholder="Digite seu nome"
+            required minlength="3" autocomplete="name" />
+          @if (form.controls.name.touched && form.controls.name.invalid) {
+            <small class="field-error">Digite seu nome com pelo menos 3 letras (somente letras e espaços).</small>
+          }
+        </div>
+        <div class="field">
+          <label for="contact-email">E-mail</label>
+          <input id="contact-email" type="email" formControlName="email" placeholder="voce@exemplo.com"
+            required autocomplete="email" />
+          @if (form.controls.email.touched && form.controls.email.invalid) {
+            <small class="field-error">Informe um e-mail válido.</small>
+          }
+        </div>
+        <div class="field">
+          <label for="contact-subject">Assunto</label>
+          <select id="contact-subject" formControlName="subject" required>
+            <option value="">Selecione um assunto</option>
+            <option value="Dúvida">Dúvida</option>
+            <option value="Sugestão">Sugestão</option>
+            <option value="Projeto">Projeto</option>
+            <option value="Outro">Outro</option>
+          </select>
+          @if (form.controls.subject.touched && form.controls.subject.invalid) {
+            <small class="field-error">Selecione um assunto.</small>
+          }
+        </div>
+        <div class="field">
+          <label for="contact-message">Mensagem</label>
+          <textarea id="contact-message" formControlName="message" placeholder="Conte sua ideia (pelo menos 10 caracteres)"
+            required minlength="10"></textarea>
+          @if (form.controls.message.touched && form.controls.message.invalid) {
+            <small class="field-error">Escreva uma mensagem de pelo menos 10 caracteres.</small>
+          }
+        </div>
+        <button class="btn-eco submit-button" type="submit">Enviar mensagem</button>
+        @if (feedback()) { <p class="form-feedback" role="status">{{ feedback() }}</p> }
+        @if (error()) { <p class="form-error" role="alert">{{ error() }}</p> }
+      </form>
+    </div>
+  </div>
+</section>

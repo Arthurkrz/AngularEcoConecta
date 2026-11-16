@@ -1,0 +1,4 @@
+.field-error { display: block; color: #a42323; margin-top: 4px; }
+.form-feedback { color: #176b4c; font-weight: 600; margin-top: 12px; }
+.form-error { color: #a42323; font-weight: 600; margin-top: 12px; }
+.image-panel img { width: 100%; height: auto; object-fit: cover; }

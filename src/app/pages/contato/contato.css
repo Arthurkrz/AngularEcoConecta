@@ -1,0 +1,12 @@
+.page-contact-note, .page-contact-note a {
+    color: #fff;
+}
+
+.page-contact-note a {
+    text-decoration: underline;
+}
+
+.submit-button { width: 100%; border: 0; }
+.field-error { color: #a42323; display: block; margin-top: 4px; }
+.form-feedback { margin-top: 12px; color: #176b4c; font-weight: 600; }
+.form-error { margin-top: 12px; color: #a42323; font-weight: 600; }

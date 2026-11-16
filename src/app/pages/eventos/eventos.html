@@ -1,0 +1,36 @@
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow">EXPLORE O ECOCONECTA</span>
+    <h1>Agenda de atividades</h1>
+    <p>Eventos de sustentabilidade para se inscrever.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div id="event-list" class="event-list">
+      @for (event of events; track event.id) {
+        <article class="event-item">
+          <div class="event-date">
+            <strong>{{ event.day }}</strong>
+            {{ event.month }}
+          </div>
+          <div class="event-content">
+            <h3>{{ event.title }}</h3>
+            <p>{{ event.location }} · {{ event.description }}</p>
+          </div>
+          <button
+            class="btn-eco"
+            [class.outline]="isSubscribed(event.id)"
+            [attr.aria-pressed]="isSubscribed(event.id)"
+            type="button"
+            (click)="toggleSubscription(event.id)"
+          >{{ isSubscribed(event.id) ? '✓ Inscrito' : 'Tenho interesse' }}</button>
+        </article>
+      }
+    </div>
+    <p class="small spacer-top">
+      Consulte suas escolhas em <a routerLink="/painel" class="card-link">Meu painel →</a>
+    </p>
+  </div>
+</section>

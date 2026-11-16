@@ -1,0 +1,64 @@
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow">EXPLORE O ECOCONECTA</span>
+    <h1>Seu painel</h1>
+    <p>Acompanhe seus registros, dicas favoritas e atividades salvos neste navegador.</p>
+  </div>
+</section>
+<section class="section">
+  <div class="container">
+    <div class="dashboard-grid">
+      <section class="panel">
+        <h3>👤 Cadastros</h3>
+        @if (members().length) {
+          <ul>@for (member of members(); track member.id) {
+            <li><strong>{{ member.name }}</strong> · {{ member.email }} · {{ member.interest }}</li>
+          }</ul>
+        } @else { <p>Nenhum registro ainda.</p> }
+        <a routerLink="/cadastro" class="card-link">Novo cadastro →</a>
+      </section>
+      <section class="panel">
+        <h3>✉ Mensagens</h3>
+        @if (messages().length) {
+          <ul>@for (message of messages(); track message.id) {
+            <li><strong>{{ message.name }}</strong>: {{ message.subject }} — {{ message.message.slice(0, 90) }}</li>
+          }</ul>
+        } @else { <p>Nenhum registro ainda.</p> }
+        <a routerLink="/contato" class="card-link">Nova mensagem →</a>
+      </section>
+      <section class="panel">
+        <h3>♥ Dicas favoritas</h3>
+        @if (favoriteTips().length) {
+          <ul>@for (tip of tips; track tip.id) {
+            @if (favoriteTips().includes(tip.id)) { <li>{{ tip.title }}</li> }
+          }</ul>
+        } @else { <p>Nenhum registro ainda.</p> }
+        <a routerLink="/dicas" class="card-link">Ver dicas →</a>
+      </section>
+      <section class="panel">
+        <h3>🌱 Projetos salvos</h3>
+        @if (savedProjects().length) {
+          <ul>@for (project of projects; track project.id) {
+            @if (savedProjects().includes(project.id)) { <li>{{ project.title }}</li> }
+          }</ul>
+        } @else { <p>Nenhum registro ainda.</p> }
+        <a routerLink="/projetos" class="card-link">Ver projetos →</a>
+      </section>
+      <section class="panel">
+        <h3>📅 Eventos marcados</h3>
+        @if (registeredEvents().length) {
+          <ul>@for (event of events; track event.id) {
+            @if (registeredEvents().includes(event.id)) { <li>{{ event.title }}</li> }
+          }</ul>
+        } @else { <p>Nenhum registro ainda.</p> }
+        <a routerLink="/eventos" class="card-link">Ver agenda →</a>
+      </section>
+      <section class="panel">
+        <h3>🔒 Privacidade</h3>
+        <p>Os dados são mantidos somente neste navegador. Use a opção abaixo para apagá-los.</p>
+        <button type="button" class="btn-eco outline" (click)="apagarDados()">Apagar meus dados</button>
+        @if (feedback()) { <p class="form-feedback" role="status">{{ feedback() }}</p> }
+      </section>
+    </div>
+  </div>
+</section>

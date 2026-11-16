@@ -1,0 +1,37 @@
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow">EXPLORE O ECOCONECTA</span>
+    <h1>Galeria de ideias</h1>
+    <p>Uma coleção visual de temas e hábitos para transformar inspiração em prática.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="filters" aria-label="Filtrar galeria">
+      @for (category of categories; track category.value) {
+        <button
+          class="filter-btn gallery-filter"
+          type="button"
+          [class.selected]="selectedCategory() === category.value"
+          [attr.aria-pressed]="selectedCategory() === category.value"
+          (click)="selectCategory(category.value)"
+        >{{ category.name }}</button>
+      }
+    </div>
+
+    <div id="gallery" class="gallery-grid" aria-live="polite">
+      @for (item of filteredEntries(); track item.id) {
+        <figure class="gallery-card">
+          <div class="gallery-media">
+            <img [src]="item.img" [alt]="item.title" loading="lazy" />
+            <span class="tag tag-overlay">{{ item.category }}</span>
+          </div>
+          <figcaption class="gallery-caption">{{ item.title }}</figcaption>
+        </figure>
+      } @empty {
+        <p class="empty-state">Nenhuma imagem nesta categoria.</p>
+      }
+    </div>
+  </div>
+</section>

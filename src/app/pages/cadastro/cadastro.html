@@ -1,0 +1,59 @@
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow">EXPLORE O ECOCONECTA</span>
+    <h1>Participe da comunidade</h1>
+    <p>Cadastre seu interesse em participar.</p>
+  </div>
+</section>
+<section class="section">
+  <div class="container">
+    <div class="split">
+      <div class="image-panel">
+        <img src="/img/bicicleta.svg" alt="Mobilidade sustentável representada por uma bicicleta" />
+      </div>
+      <form class="form-shell" [formGroup]="form" (ngSubmit)="cadastrar()" novalidate>
+        <h2>Crie seu cadastro</h2>
+        <p>Todos os campos são obrigatórios.</p>
+        <div class="field">
+          <label for="register-name">Nome</label>
+          <input class="form-control" id="register-name" type="text" formControlName="name" autocomplete="name" placeholder="Seu nome completo" />
+          @if (form.controls.name.touched && form.controls.name.invalid) {
+            <small class="field-error">Digite ao menos 3 letras, usando apenas letras e espaços.</small>
+          }
+        </div>
+        <div class="field">
+          <label for="register-email">E-mail</label>
+          <input class="form-control" id="register-email" type="email" formControlName="email" autocomplete="email" placeholder="voce@exemplo.com" />
+          @if (form.controls.email.touched && form.controls.email.invalid) {
+            <small class="field-error">Informe um e-mail válido.</small>
+          }
+        </div>
+        <div class="field">
+          <label for="register-city">Cidade</label>
+          <input class="form-control" id="register-city" type="text" formControlName="city" placeholder="Sua cidade" />
+          @if (form.controls.city.touched && form.controls.city.invalid) {
+            <small class="field-error">Informe sua cidade (ao menos 2 caracteres).</small>
+          }
+        </div>
+        <div class="field">
+          <label for="register-interest">Área de interesse</label>
+          <select class="form-select" id="register-interest" formControlName="interest">
+            <option value="">Selecione</option>
+            <option>Educação ambiental</option>
+            <option>Reciclagem</option>
+            <option>Mobilidade</option>
+            <option>Consumo consciente</option>
+          </select>
+          @if (form.controls.interest.touched && form.controls.interest.invalid) {
+            <small class="field-error">Selecione uma área de interesse.</small>
+          }
+        </div>
+        <button class="btn-eco submit-button" type="submit">Salvar cadastro</button>
+        @if (feedback()) {
+          <p class="form-feedback" role="status">{{ feedback() }} <a routerLink="/painel">Ir para Meu painel</a></p>
+        }
+        @if (error()) { <p class="form-error" role="alert">{{ error() }}</p> }
+      </form>
+    </div>
+  </div>
+</section>

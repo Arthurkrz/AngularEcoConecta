@@ -1,0 +1,32 @@
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow">EXPLORE O ECOCONECTA</span>
+    <h1>Projetos que inspiram</h1>
+    <p>Iniciativas demonstrativas para conhecer, compartilhar e guardar em seu painel.</p>
+  </div>
+</section>
+<section class="section">
+  <div class="container">
+    <div class="filters" aria-label="Filtrar projetos">
+        <button type="button" class="filter-btn project-filter"
+          [class.selected]="selectedCategory() === 'Todos'"
+          [attr.aria-pressed]="selectedCategory() === 'Todos'"
+          (click)="selectCategory('Todos')">Todos</button>
+        <button type="button" class="filter-btn project-filter"
+          [class.selected]="selectedCategory() === 'Educação'"
+          [attr.aria-pressed]="selectedCategory() === 'Educação'"
+          (click)="selectCategory('Educação')">Educação</button>
+        <button type="button" class="filter-btn project-filter"
+          [class.selected]="selectedCategory() === 'Comunidade'"
+          [attr.aria-pressed]="selectedCategory() === 'Comunidade'"
+          (click)="selectCategory('Comunidade')">Comunidade</button>
+    </div>
+    <div class="cards" >
+      @for (item of filteredItems(); track item.id) {
+        <app-eco-card [item]="item" type="project" />
+      } @empty {
+        <div class="empty-state">Nenhum resultado.</div>
+      }
+    </div>
+  </div>
+</section>

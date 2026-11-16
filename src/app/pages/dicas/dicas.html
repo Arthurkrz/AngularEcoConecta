@@ -1,0 +1,36 @@
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow">EXPLORE O ECOCONECTA</span>
+    <h1>Dicas para o dia a dia</h1>
+    <p>Filtre as sugestões por categoria e salve suas favoritas.</p>
+  </div>
+</section>
+<section class="section">
+  <div class="container">
+    <div class="filters" aria-label="Filtrar dicas">
+        <button type="button" class="filter-btn tip-filter"
+          [class.selected]="selectedCategory() === 'Todos'"
+          [attr.aria-pressed]="selectedCategory() === 'Todos'"
+          (click)="selectCategory('Todos')">Todas</button>
+        <button type="button" class="filter-btn tip-filter"
+          [class.selected]="selectedCategory() === 'Casa'"
+          [attr.aria-pressed]="selectedCategory() === 'Casa'"
+          (click)="selectCategory('Casa')">Casa</button>
+        <button type="button" class="filter-btn tip-filter"
+          [class.selected]="selectedCategory() === 'Cidade'"
+          [attr.aria-pressed]="selectedCategory() === 'Cidade'"
+          (click)="selectCategory('Cidade')">Cidade</button>
+        <button type="button" class="filter-btn tip-filter"
+          [class.selected]="selectedCategory() === 'Consumo'"
+          [attr.aria-pressed]="selectedCategory() === 'Consumo'"
+          (click)="selectCategory('Consumo')">Consumo</button>
+    </div>
+    <div class="cards" aria-live="polite">
+      @for (item of filteredItems(); track item.id) {
+        <app-eco-card [item]="item" type="tip" />
+      } @empty {
+        <div class="empty-state">Nenhum resultado.</div>
+      }
+    </div>
+  </div>
+</section>
